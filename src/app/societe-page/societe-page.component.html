@@ -1,0 +1,139 @@
+<app-navbar></app-navbar>
+
+<div class="container mx-auto">
+  <div class="container flex flex-row space-x-48 place-items-center mt-7">
+    <div class="">
+      <h1
+        class="text-2xl font-bold text-center text-black md:text-3xl md:text-left"
+      >
+        Liste des sociétés enregistrées
+      </h1>
+    </div>
+    <div class="ml-0">
+      <button
+        class="flex shadow w-32 block border-green border-2 rounded-full focus:outline-none focus:border-green px-4 py-2 text-green hover:bg-green hover:text-white"
+        (click)="toggleModal()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+
+        <span>Ajouter</span>
+      </button>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    *ngIf="showModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+  >
+    <div class="relative w-auto my-6 mx-auto max-w-3xl">
+      <!--content-->
+      <div
+        class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+      >
+        <!--header-->
+        <div
+          class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
+        >
+          <h3 class="text-3xl font-semibold">Ajout d'une société</h3>
+          <button
+            class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+            (click)="toggleModal()"
+          >
+            <span
+              class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"
+            >
+              ×
+            </span>
+          </button>
+        </div>
+        <!--body-->
+        <div class="flex items-center justify-center p-9">
+          <div class="mx-auto w-full max-w-[550px] bg-white">
+            <form action="">
+              <!-- libelle -->
+
+              <div class="mb-5">
+                <label
+                  for="name"
+                  class="mb-3 block text-base font-medium text-black"
+                >
+                  Libellé de la societé
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Ex : T-oil"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                />
+              </div>
+              <!-- description -->
+
+              <div class="mb-5">
+                <label
+                  for="name"
+                  class="mb-3 block text-base font-medium text-black"
+                >
+                  Description (Optionnel)
+                </label>
+                <textarea
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                  id="story"
+                  name="story"
+                  rows="5"
+                  cols="33"
+                >
+                </textarea>
+                <!-- <input
+                  type="text area"
+                  name="name"
+                  id="name"
+                  placeholder="Votre texte"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                /> -->
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--footer-->
+        <div
+          class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b"
+        >
+          <button
+            class="text-green background-transparent hover:bg-whiteGreen border-2 border:green font-bold uppercase px-6 py-2 rounded text-sm outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            (click)="toggleModal()"
+          >
+            Fermer
+          </button>
+          <button
+            class="bg-green hover:bg-greenLight text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            (click)="toggleModal()"
+          >
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+  <!-- <pre>
+    {{ convertedJson }}
+  </pre> -->
+</div>

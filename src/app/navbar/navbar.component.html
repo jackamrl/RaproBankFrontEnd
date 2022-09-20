@@ -1,0 +1,192 @@
+<nav
+  class="sticky top-0 flex items-center justify-between bg-green text-ashGray px-6 py-3 mx-auto font-normal text-lg md:text-lg"
+>
+  <!-- <div class="flex items-center justify-between"> -->
+  <!-- logo -->
+  <div class="pt-2">
+    <img src="./../../assets/logo-toil.png" alt="" />
+  </div>
+
+  <!-- Menu Items -->
+  <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
+    <ul class="hidden space-x-12 md:flex">
+      <!-- accueil -->
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class=""
+      >
+        <a
+          routerLink="/"
+          href="#"
+          class="hover:text-white active:text-white active:font-medium"
+          >Accueil</a
+        >
+      </li>
+
+      <!-- comptes bancaires -->
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a
+          routerLink="/comptes"
+          href="#"
+          class="hover:text-white active:text-white active:font-medium"
+          >Comptes bancaires
+        </a>
+      </li>
+
+      <!-- banque et societe -->
+      <li>
+        <!-- The main div containing the dropdown -->
+        <div (click)="togglesecond()" class="relative">
+          <!-- The div containing the selected value and an icon to visually indicate if the dropdown is open or closed -->
+          <div
+            class="relative w-fit rounded-md flex justify-center items-center cursor-pointer"
+          >
+            <div class="mr-2">Banque & Societés</div>
+            <div>
+              <svg
+                class="-mr-1 ml-2 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          <!-- The div containing the available items -->
+          <div
+            *ngIf="Showsecond"
+            class="z-10 absolute w-max py-1 bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
+          >
+            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+              <a href="" routerLink="/societe"> Les societés</a>
+            </div>
+            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+              <a href="" routerLink="/banque">Les banques</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- operations -->
+      <!-- <li>
+        <div href="" class="relative flex justify-start items-center group"
+          ><p class="hover:text-white">Opérations</p>
+          <img
+            class="w-4 ml-1"
+            src="./../../assets/Icones/chevron_down_35px.png"
+            alt=""
+          />
+          <div
+            class="absolute hidden top-full min-w-full w-max bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block"
+          >
+            0
+            <ul>
+              <li class="px-4 py-1.5 hover:text-white">
+                Importer un grand livre
+              </li>
+              <li class="px-4 py-1.5 hover:text-white">
+                Importer un extrait de delevé banacire
+              </li>
+              <li class="px-4 py-1.5 hover:text-white">
+                c
+              </li>
+              <li class="px-4 py-1.5 hover:text-white">Les mouvements</li>
+              <li class="px-4 py-1.5 hover:text-white">
+                Les opérations banacires
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li> -->
+      <li>
+        <!-- The main div containing the dropdown -->
+        <div (click)="toggle()" class="relative">
+          <!-- The div containing the selected value and an icon to visually indicate if the dropdown is open or closed -->
+          <div
+            class="relative w-fit rounded-md flex justify-center items-center cursor-pointer"
+          >
+            <div class="mr-2">Opérations</div>
+            <div>
+              <svg
+                class="-mr-1 ml-2 h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          <!-- The div containing the available items -->
+          <div
+            *ngIf="Show"
+            class="z-10 absolute w-max py-1 bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
+          >
+            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+              <a href="" routerLink="/ajoutGl"> Importer un grand livre</a>
+            </div>
+            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+              <a href="" routerLink="/ajoutEb"
+                >Importer un extrait de delevé banacire</a
+              >
+            </div>
+            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+              <a href="" routerLink="/mouvement"> Les mouvements</a>
+            </div>
+            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+              Les opérations banacires
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- etats -->
+
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a
+          routerLink="/etats"
+          href="#"
+          class="hover:text-white active:text-white active:font-medium"
+          >Etats</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <!-- Account -->
+  <div class="hidden md:flex items-center text-white">
+    <a href="#" class="relative flex justify-start items-center group">
+      <img src="./../../assets/Icones/male_user_35px.png" alt="" />
+      <img
+        class="w-4 opacity-95 ml-1"
+        src="./../../assets/Icones/chevron_down_35px.png"
+        alt=""
+      />
+      <div
+        class="absolute hidden text-base top-full min-w-full w-max bg-davisgray shadow-md -left-40 rounded mt-11 p-4 group-focus:block"
+      >
+        <ul>
+          <li class="px-4 py-1.5 hover:text-white">Modifier mon compte</li>
+          <li
+            class="px-4 py-1.5 bg-green rounded-lg content-center hover:text-white"
+          >
+            Se déconnecter
+          </li>
+        </ul>
+      </div>
+    </a>
+  </div>
+  <!-- </div> -->
+</nav>
