@@ -15,6 +15,7 @@ import { MouvementComponent } from './mouvement/mouvement.component';
 import { AddCompteBancaireComponent } from './add-compte-bancaire/add-compte-bancaire.component';
 import { BanquePageComponent } from './banque-page/banque-page.component';
 import { SocietePageComponent } from './societe-page/societe-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SocietePageComponent } from './societe-page/societe-page.component';
     MouvementComponent,
     AddCompteBancaireComponent,
     BanquePageComponent,
-    SocietePageComponent
+    SocietePageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

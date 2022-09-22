@@ -19,6 +19,7 @@ module.exports = {
         whiteGreen: "#D6EED7",
         black: "#323432",
         gray: "#9CAEA9",
+        graygreen: "#EAEAEB",
         ashGray: "#CCDAD1",
         battleshipGray: "#788585",
         davisgray: "#7A7A7A",
@@ -29,10 +30,12 @@ module.exports = {
         // veryPaleRed: "hsl(13 , 100%, 96%)",
         // veryLightGray: "hsl(0 , 0%, 98%)",
       },
+      fontFamily: {
+        body: "Inter",
+      },
       // fontFamily: {
       //   sans: ["Proxima Nova", ...defaultTheme.fontFamily.sans],
       // },
     },
   },
-  plugins: [],
 };
