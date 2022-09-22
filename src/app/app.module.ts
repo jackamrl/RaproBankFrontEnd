@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,6 +20,8 @@ import { BanquePageComponent } from './banque-page/banque-page.component';
 import { SocietePageComponent } from './societe-page/societe-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,13 +37,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
     AddCompteBancaireComponent,
     BanquePageComponent,
     SocietePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [authInterceptorProviders],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
