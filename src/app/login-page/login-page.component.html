@@ -47,32 +47,73 @@
                   <div class="text-gray-500 text-xl text-center mb-3 font-bold">
                     <small>CONNEXION</small>
                   </div>
-                  <form>
-                    <div class="relative w-full mb-3">
+
+                  <form
+                    *ngIf="!isLoggedIn"
+                    name="form"
+                    (ngSubmit)="f.form.valid && onSubmit()"
+                    #f="ngForm"
+                    novalidate
+                  >
+                    <div class="form-group relative w-full mb-3">
                       <label
                         class="block text-gray-700 text-sm font-bold mb-2"
-                        for="grid-password"
-                        >Email</label
+                        for="username"
+                        >Nom d'utilisateur</label
                       ><input
-                        type="email"
-                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring ring-greenLight w-full"
+                        type="text"
+                        class="form-control border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring ring-greenLight w-full"
                         placeholder="Entrez votre adresse email"
                         style="transition: all 0.15s ease 0s"
+                        name="username"
+                        [(ngModel)]="form.username"
+                        required
+                        #username="ngModel"
                       />
+                      <p
+                        class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm"
+                        *ngIf="f.submitted && username.invalid"
+                        role="alert"
+                      >
+                        Le nom d'utilisateur est requis
+                      </p>
                     </div>
-                    <div class="relative w-full mb-3">
+
+                    <div class="form-group relative w-full mb-3">
                       <label
                         class="block text-gray-700 text-sm font-bold mb-2"
-                        for="grid-password"
+                        for="password"
                         >Password</label
                       ><input
                         type="password"
-                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring ring-greenLight w-full"
+                        class="form-control peer border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring ring-greenLight w-full"
                         placeholder="Entrez votre mot de passe"
                         style="transition: all 0.15s ease 0s"
+                        name="password"
+                        [(ngModel)]="form.password"
+                        required
+                        minlength="6"
+                        #password="ngModel"
                       />
+                      <div
+                        class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm"
+                        role="alert"
+                        *ngIf="f.submitted && password.invalid"
+                      >
+                        <!-- <p
+                          *ngIf="password.errors.required"
+
+                        >
+                          Le mot de passe est requis.
+                        </p>
+                        <p
+                          *ngIf="password.errors.minlength"
+                        >
+                          Le mot de passe doit contenir au moins 6 caracteres.
+                        </p> -->
+                      </div>
                     </div>
-                    <div>
+                    <!-- <div>
                       <label class="inline-flex items-center cursor-pointer"
                         ><input
                           id="customCheckLogin"
@@ -83,11 +124,10 @@
                           >Se rappeller de moi</span
                         ></label
                       >
-                    </div>
-                    <div class="text-center mt-6">
+                    </div> -->
+                    <div class="form-group text-center mt-6">
                       <button
                         class="bg-green text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                        type="button"
                         style="transition: all 0.15s ease 0s"
                       >
                         Connexion

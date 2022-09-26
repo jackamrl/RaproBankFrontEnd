@@ -21,7 +21,7 @@
       </li>
 
       <!-- comptes bancaires -->
-      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li>
         <a
           routerLink="/comptes"
           href="#"
@@ -29,11 +29,20 @@
           >Comptes bancaires
         </a>
       </li>
+      <!-- gestion des comptes -->
+      <li *ngIf="showAdminBoard">
+        <a
+          routerLink="/comptes"
+          href="#"
+          class="hover:text-white active:text-white active:font-medium"
+          >Les utilisateurs
+        </a>
+      </li>
 
       <!-- banque et societe -->
       <li>
         <!-- The main div containing the dropdown -->
-        <div (click)="togglesecond()" class="relative">
+        <div (click)="toggleBankSociety()" class="relative">
           <!-- The div containing the selected value and an icon to visually indicate if the dropdown is open or closed -->
           <div
             class="relative w-fit rounded-md flex justify-center items-center cursor-pointer"
@@ -57,7 +66,7 @@
           </div>
           <!-- The div containing the available items -->
           <div
-            *ngIf="Showsecond"
+            *ngIf="ShowBankSociety"
             class="z-10 absolute w-max py-1 bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
           >
             <div class="py-2 px-4 w-full hover:bg-neutral-100">
@@ -128,7 +137,7 @@
           <!-- The div containing the available items -->
           <div
             *ngIf="Show"
-            class="z-10 absolute w-max py-1 bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
+            class="z-10 absolute w-max py-1 bg-white text-black shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
           >
             <div class="py-2 px-4 w-full hover:bg-neutral-100">
               <a href="" routerLink="/ajoutGl"> Importer un grand livre</a>
@@ -162,7 +171,43 @@
   </div>
 
   <!-- Account -->
-  <div class="hidden md:flex items-center text-white">
+  <div (click)="toggleAccount()" class="relative">
+    <!-- The div containing the selected value and an icon to visually indicate if the dropdown is open or closed -->
+    <div
+      class="relative w-fit rounded-md flex justify-center items-center cursor-pointer"
+    >
+      <img src="./../../assets/Icones/male_user_35px.png" alt="" />
+      <div>
+        <svg
+          class="-mr-1 ml-2 h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+    <!-- The div containing the available items -->
+    <div
+      *ngIf="ShowAccount"
+      class="z-10 absolute w-max py-1 bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
+    >
+      <div class="py-2 px-4 w-full hover:bg-neutral-100">
+        <a href="" routerLink="/ajoutGl"> Mon compte</a>
+      </div>
+      <div class="py-2 px-4 w-full hover:bg-neutral-100">
+        <a href="" routerLink="/ajoutEb">Se deconnecter</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="hidden md:flex items-center text-white">
     <a href="#" class="relative flex justify-start items-center group">
       <img src="./../../assets/Icones/male_user_35px.png" alt="" />
       <img
@@ -183,6 +228,6 @@
         </ul>
       </div>
     </a>
-  </div>
+  </div> -->
   <!-- </div> -->
 </nav>

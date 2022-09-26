@@ -8,20 +8,28 @@ import { TokenStorageService } from '../services/token-storage.service';
 })
 export class NavbarComponent implements OnInit {
   Show: boolean = false;
-  Showsecond: boolean = false;
+  ShowBankSociety: boolean = false;
+  ShowAccount: boolean = false;
 
   private roles!: string[];
   isLoggedIn = false;
   showAdminBoard = false;
-  showModeratorBoard = false;
+  showAccountingBoard = false;
   username!: string;
 
   toggle() {
     this.Show = !this.Show;
-    this.Showsecond = false;
+    this.ShowBankSociety = false;
+    this.ShowAccount = false;
   }
-  togglesecond() {
-    this.Showsecond = !this.Showsecond;
+  toggleBankSociety() {
+    this.ShowBankSociety = !this.ShowBankSociety;
+    this.Show = false;
+    this.ShowAccount = false;
+  }
+  toggleAccount() {
+    this.ShowAccount = !this.ShowAccount;
+    this.ShowBankSociety = false;
     this.Show = false;
   }
 
@@ -35,7 +43,7 @@ export class NavbarComponent implements OnInit {
       this.roles = user.roles;
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_ACCOUNTING');
+      this.showAccountingBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }
