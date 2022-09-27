@@ -54,6 +54,7 @@
                     (ngSubmit)="f.form.valid && onSubmit()"
                     #f="ngForm"
                     novalidate
+                    role="form"
                   >
                     <div class="form-group relative w-full mb-3">
                       <label
@@ -132,6 +133,15 @@
                       >
                         Connexion
                       </button>
+                    </div>
+                    <div class="form-group">
+                      <div
+                        class="text-lg text-black"
+                        role="alert"
+                        *ngIf="f.submitted && isLoginFailed"
+                      >
+                        Login failed: {{ errorMessage }}
+                      </div>
                     </div>
                   </form>
                 </div>

@@ -6,4 +6,7 @@ import { TokenStorageService } from './services/token-storage.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'Demo';
+  greeting = { id: 'XXX', content: 'Hello World' };
+}

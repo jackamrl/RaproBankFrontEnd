@@ -13,8 +13,13 @@ const httpOptions = {
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
+  requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
 
-  login(credentials: { username: any; password: any }): Observable<any> {
+  login(credentials: {
+    credentials?: any;
+    username?: any;
+    password?: any;
+  }): Observable<any> {
     return this.http.post(
       AUTH_API + 'signin',
       {
@@ -24,6 +29,12 @@ export class AuthService {
       httpOptions
     );
   }
+
+  // newLogin(loginData: any) {
+  //   return this.http.post(AUTH_API + 'signin', loginData, {
+  //     headers: this.requestHeader,
+  //   });
+  // }
 
   register(user: {
     username: any;
