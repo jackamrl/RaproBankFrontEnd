@@ -1,5 +1,5 @@
 <nav
-  class="sticky top-0 flex items-center justify-between bg-green text-ashGray px-5 py-3 mx-auto font-normal text-lg md:text-base"
+  class="navigation z-50 sticky top-0 flex items-center justify-between bg-green text-ashGray px-5 py-3 mx-auto font-normal text-lg md:text-base"
 >
   <!-- <div class="flex items-center justify-between"> -->
   <!-- logo -->
@@ -8,22 +8,30 @@
   </div>
 
   <!-- Menu Items -->
-  <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
-    <ul routerLinkActive="active" class="hidden space-x-8 md:flex">
+  <div class="navigation hidden w-full md:block md:w-auto" id="mobile-menu">
+    <ul class="hidden space-x-8 md:flex">
       <!-- accueil -->
-      <li class="">
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class=""
+      >
         <a
           routerLink="/"
-          href="#"
           class="hover:text-white active:text-white active:font-medium"
           >Accueil</a
         >
       </li>
 
       <!-- comptes bancaires -->
-      <li>
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="showAccountingBoard && showUserBoard"
+      >
         <a
           routerLink="/comptes"
+          x
           href="#"
           class="hover:text-white active:text-white active:font-medium"
           >Comptes bancaires
@@ -33,6 +41,7 @@
       <li *ngIf="showAdminBoard">
         <a
           routerLink="/comptes"
+          routerLinkActive="active"
           href="#"
           class="hover:text-white active:text-white active:font-medium"
           >Les utilisateurs
@@ -40,9 +49,14 @@
       </li>
 
       <!-- banque et societe -->
-      <li>
+      <li
+        routerLinkActive="active"
+        (click)="toggleBankSociety()"
+        class=""
+        *ngIf="showAccountingBoard && showUserBoard"
+      >
         <!-- The main div containing the dropdown -->
-        <div (click)="toggleBankSociety()" class="relative">
+        <div class="relative">
           <!-- The div containing the selected value and an icon to visually indicate if the dropdown is open or closed -->
           <div
             class="relative w-fit rounded-md flex justify-center items-center cursor-pointer"
@@ -67,13 +81,18 @@
           <!-- The div containing the available items -->
           <div
             *ngIf="ShowBankSociety"
-            class="z-10 absolute w-max py-1 bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
+            class="z-10 absolute w-max bg-greenLight2 font-light text-white shadow-md mt-1 rounded-lg mt-11 group-focus:block cursor-pointer"
           >
-            <div class="py-2 px-4 w-full hover:bg-neutral-100">
-              <a href="" routerLink="/societe"> Les societés</a>
+            <div
+              class="py-2 px-4 w-full transition ease-in-out delay-30 hover:bg-neutral-100 hover:text-green"
+            >
+              <a href="" routerLink="/societe"> Liste des societés</a>
             </div>
-            <div class="py-2 px-4 w-full hover:bg-neutral-100">
-              <a href="" routerLink="/banque">Les banques</a>
+            <!-- <hr /> -->
+            <div
+              class="py-2 px-4 w-full transition ease-in-out delay-30 hover:bg-neutral-100 hover:text-green"
+            >
+              <a href="" routerLink="/banque">Liste des banques</a>
             </div>
           </div>
         </div>
@@ -110,7 +129,7 @@
           </div>
         </div>
       </li> -->
-      <li>
+      <li *ngIf="showAccountingBoard" routerLinkActive="active">
         <!-- The main div containing the dropdown -->
         <div (click)="toggle()" class="relative">
           <!-- The div containing the selected value and an icon to visually indicate if the dropdown is open or closed -->
@@ -137,20 +156,31 @@
           <!-- The div containing the available items -->
           <div
             *ngIf="Show"
-            class="z-10 absolute w-max py-1 bg-white text-black shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
+            class="z-10 absolute w-max bg-greenLight2 text-white font-light shadow-md mt-1 rounded-lg mt-11 group-focus:block cursor-pointer"
           >
-            <div class="py-2 px-4 w-full hover:bg-neutral-100">
-              <a href="" routerLink="/ajoutGl"> Importer un grand livre</a>
+            <div
+              class="py-2 px-4 w-full transition ease-in-out delay-30 hover:bg-neutral-100 hover:text-green"
+            >
+              <a href="" routerLink="/ajoutGl">Importer un grand livre</a>
             </div>
-            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+            <!-- <hr /> -->
+            <div
+              class="py-2 px-4 w-full transition ease-in-out delay-30 hover:bg-neutral-100 hover:text-green"
+            >
               <a href="" routerLink="/ajoutEb"
                 >Importer un extrait de delevé banacire</a
               >
             </div>
-            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+            <!-- <hr /> -->
+            <div
+              class="py-2 px-4 w-full transition ease-in-out delay-30 hover:bg-neutral-100 hover:text-green"
+            >
               <a href="" routerLink="/mouvement"> Les mouvements</a>
             </div>
-            <div class="py-2 px-4 w-full hover:bg-neutral-100">
+            <!-- <hr /> -->
+            <div
+              class="py-2 px-4 w-full transition ease-in-out delay-30 hover:bg-neutral-100 hover:text-green"
+            >
               Les opérations banacires
             </div>
           </div>
@@ -159,7 +189,11 @@
 
       <!-- etats -->
 
-      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        *ngIf="showAccountingBoard && showUserBoard"
+      >
         <a
           routerLink="/etats"
           href="#"
@@ -196,13 +230,33 @@
     <!-- The div containing the available items -->
     <div
       *ngIf="ShowAccount"
-      class="z-10 absolute w-max py-1 bg-davisgray shadow-md mt-1 rounded mt-11 p-4 group-focus:block cursor-pointer"
+      class="absolute right-0 z-40 p-5 absolute w-max bg-greenLight2 shadow-md mt-1 rounded mt-11 group-focus:block cursor-pointer"
     >
-      <div class="py-2 px-4 w-full hover:bg-neutral-100">
-        <a href="" routerLink="/ajoutGl"> Mon compte</a>
+      <div
+        class="flex py-2 px-4 mx-auto text-white transition ease-in-out delay-30"
+      >
+        <a href=""> Mon compte</a>
       </div>
-      <div class="py-2 px-4 w-full hover:bg-neutral-100">
-        <a href="" routerLink="/ajoutEb">Se deconnecter</a>
+      <div
+        class="flex py-2 px-4 mt-2 w-full bg-greenDark text-white rounded-full"
+        (click)="logout()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+          />
+        </svg>
+
+        <p class="mx-2">Se deconnecter</p>
       </div>
     </div>
   </div>

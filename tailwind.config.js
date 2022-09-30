@@ -12,12 +12,14 @@ module.exports = {
     extend: {
       display: ["group-focus"],
       colors: {
-        green: "#2B642E",
-        greenLight: "#39853D",
-        greenDark: "#142E15",
+        greenLight: "#597a5c",
+        greenLight2: "#7DA180",
+        green: "#2e4e32",
+        greenDark: "#06250b",
         blueBlack: "#061826",
         whiteGreen: "#D6EED7",
         black: "#323432",
+        Nyanzo: "#E4FDE1",
         gray: "#9CAEA9",
         graygreen: "#EAEAEB",
         ashGray: "#CCDAD1",

@@ -24,6 +24,10 @@ export class LoginPageComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    if ((this.isLoginFailed = true)) {
+      this.router.navigate(['/login']);
+    }
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
@@ -48,8 +52,7 @@ export class LoginPageComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         console.log('good');
-
-        this.reloadPage();
+        this.router.navigate([this.returnUrl]);
       },
       (err) => {
         this.errorMessage = err.error.message;

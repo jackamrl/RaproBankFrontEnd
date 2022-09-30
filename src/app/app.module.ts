@@ -19,8 +19,15 @@ import { AddCompteBancaireComponent } from './add-compte-bancaire/add-compte-ban
 import { BanquePageComponent } from './banque-page/banque-page.component';
 import { SocietePageComponent } from './societe-page/societe-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddBanqueFormComponent } from './add-banque-form/add-banque-form.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +45,20 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     BanquePageComponent,
     SocietePageComponent,
     LoginPageComponent,
+    AddBanqueFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })

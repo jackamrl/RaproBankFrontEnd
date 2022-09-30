@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddBanqueFormComponent } from '../add-banque-form/add-banque-form.component';
+import { ApiService } from '../services/api.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-banque-page',
@@ -7,11 +13,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BanquePageComponent implements OnInit {
   showModal = false;
+  displayedColumns: string[] = ['libelleBanque', 'description'];
+  dataSource!: MatTableDataSource<any>;
 
-  constructor() {}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {}
+  constructor(private dialog: MatDialog, private api: ApiService) {}
+
+  ngOnInit(): void {
+    this.getAllBanque();
+  }
   toggleModal() {
     this.showModal = !this.showModal;
   }
+
+  //liste de toutes les banques
+  getAllBanque() {
+    this.api.getBanqueList().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error: (err) => {
+        console.log('error while fetching');
+      },
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  // toggleModal() {
+  //   this.dialog.open(AddBanqueFormComponent, {
+  //     width: '50%',
+  //     height: '50%',
+  //   });
+  // }
 }

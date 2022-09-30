@@ -10,17 +10,39 @@ import { LoginComponent } from './login/login.component';
 import { MouvementComponent } from './mouvement/mouvement.component';
 import { SocietePageComponent } from './societe-page/societe-page.component';
 import { StatePageComponent } from './state-page/state-page.component';
+import { AuthGuard } from './_helpers/auth.gard';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'comptes', component: AccountPageComponent },
-  { path: 'etats', component: StatePageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'ajoutGl', component: GrandLivreAddComponent },
-  { path: 'ajoutEb', component: ExtraitBancaireAddComponent },
-  { path: 'mouvement', component: MouvementComponent },
-  { path: 'societe', component: SocietePageComponent },
-  { path: 'banque', component: BanquePageComponent },
+  { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'comptes',
+    component: AccountPageComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'etats', component: StatePageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'ajoutGl',
+    component: GrandLivreAddComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'ajoutEb',
+    component: ExtraitBancaireAddComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'mouvement',
+    component: MouvementComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'societe',
+    component: SocietePageComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'banque', component: BanquePageComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({
