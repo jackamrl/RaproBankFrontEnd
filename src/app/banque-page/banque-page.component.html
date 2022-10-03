@@ -64,7 +64,8 @@
         <!--body-->
         <div class="flex items-center justify-center p-9">
           <div class="mx-auto w-full max-w-[550px] bg-white">
-            <form action="">
+            <!-- form -->
+            <form #addBanqueForm="ngForm">
               <!-- libelle -->
 
               <div class="mb-5">
@@ -75,12 +76,13 @@
                   Libellé de la banque
                 </label>
                 <input
-                  type="text"
-                  name="name"
-                  id="name"
+                  ngModel
+                  required
+                  name="libelleBanque"
                   placeholder="Ex : Ecobank"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
                 />
+                <!-- <mat-error>Ce champ est obligatoire</mat-error> -->
               </div>
               <!-- description -->
 
@@ -92,9 +94,11 @@
                   Description (Optionnel)
                 </label>
                 <textarea
+                  ngModel
+                  name="descriptionBanque"
+                  placeholder="Mettez une description de la banque"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
-                  id="story"
-                  name="story"
+                  name="description"
                   rows="5"
                   cols="33"
                 >
@@ -123,8 +127,8 @@
           </button>
           <button
             class="bg-green hover:bg-greenLight text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            type="button"
-            (click)="toggleModal()"
+            type="submit"
+            (click)="addBanque(addBanqueForm)"
           >
             Ajouter
           </button>
@@ -132,7 +136,8 @@
       </div>
     </div>
   </div>
-  <div class="container mx-auto mt-10">
+
+  <div class="container w-auto mx-auto mt-10">
     <!-- <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>
       <input

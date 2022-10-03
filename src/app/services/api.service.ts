@@ -10,7 +10,7 @@ import { Banque } from '../models/banque';
 export class ApiService {
   //url pour les banques
   baseUrlListBanque = 'http://localhost:8080/banque/list';
-  baseUrlAddBanque = 'http://localhost:8080/societe/add';
+  baseUrlAddBanque = 'http://localhost:8080/banque/add';
   //url pour les societés
   baseUrlListSociete = 'http://localhost:8080/societe/list';
   baseUrlAddSociete = 'http://localhost:8080/societe/add';

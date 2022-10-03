@@ -27,7 +27,7 @@
       <li
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        *ngIf="showAccountingBoard && showUserBoard"
+        *ngIf="showAccountingBoard || showUserBoard"
       >
         <a
           routerLink="/comptes"
@@ -53,7 +53,7 @@
         routerLinkActive="active"
         (click)="toggleBankSociety()"
         class=""
-        *ngIf="showAccountingBoard && showUserBoard"
+        *ngIf="showAccountingBoard || showUserBoard"
       >
         <!-- The main div containing the dropdown -->
         <div class="relative">
@@ -192,7 +192,7 @@
       <li
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        *ngIf="showAccountingBoard && showUserBoard"
+        *ngIf="showAccountingBoard || showUserBoard"
       >
         <a
           routerLink="/etats"

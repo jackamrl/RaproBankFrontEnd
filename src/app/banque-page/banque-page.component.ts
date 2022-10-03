@@ -5,6 +5,7 @@ import { ApiService } from '../services/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-banque-page',
@@ -56,4 +57,22 @@ export class BanquePageComponent implements OnInit {
   //     height: '50%',
   //   });
   // }
+
+  public addBanque(form: NgForm) {
+    console.log(form.value);
+
+    if (form.valid) {
+      this.api.addBanque(form.value).subscribe({
+        next: (res) => {
+          alert('Banque ajoutée avec succes');
+          form.reset();
+          this.showModal = !this.showModal;
+          this.getAllBanque;
+        },
+        error: (err) => {
+          alert("Erreur lors de l'ajout");
+        },
+      });
+    }
+  }
 }
