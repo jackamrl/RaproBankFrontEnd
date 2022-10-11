@@ -70,7 +70,7 @@
 
               <div class="mb-5">
                 <label
-                  for="name"
+                  for="libelleBanque"
                   class="mb-3 block text-base font-medium text-black"
                 >
                   Libellé de la banque
@@ -88,14 +88,13 @@
 
               <div class="mb-5">
                 <label
-                  for="name"
+                  for="description"
                   class="mb-3 block text-base font-medium text-black"
                 >
                   Description (Optionnel)
                 </label>
                 <textarea
                   ngModel
-                  name="descriptionBanque"
                   placeholder="Mettez une description de la banque"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
                   name="description"
@@ -137,6 +136,7 @@
     </div>
   </div>
 
+  <!-- Tableau des banques -->
   <div class="container w-auto mx-auto mt-10">
     <!-- <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>

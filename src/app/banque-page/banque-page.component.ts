@@ -58,6 +58,7 @@ export class BanquePageComponent implements OnInit {
   //   });
   // }
 
+  //Ajout d'une nouvelle banque
   public addBanque(form: NgForm) {
     console.log(form.value);
 
@@ -67,7 +68,7 @@ export class BanquePageComponent implements OnInit {
           alert('Banque ajoutée avec succes');
           form.reset();
           this.showModal = !this.showModal;
-          this.getAllBanque;
+          this.getAllBanque();
         },
         error: (err) => {
           alert("Erreur lors de l'ajout");

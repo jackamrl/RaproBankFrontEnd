@@ -64,20 +64,21 @@
         <!--body-->
         <div class="flex items-center justify-center p-9">
           <div class="mx-auto w-full max-w-[550px] bg-white">
-            <form action="">
+            <!-- Form -->
+            <form #addSocieteForm="ngForm">
               <!-- libelle -->
 
               <div class="mb-5">
                 <label
-                  for="name"
+                  for="libelleSociete"
                   class="mb-3 block text-base font-medium text-black"
                 >
                   Libellé de la societé
                 </label>
                 <input
-                  type="text"
-                  name="name"
-                  id="name"
+                  ngModel
+                  required
+                  name="libelleSociete"
                   placeholder="Ex : T-oil"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
                 />
@@ -86,15 +87,16 @@
 
               <div class="mb-5">
                 <label
-                  for="name"
+                  for="description"
                   class="mb-3 block text-base font-medium text-black"
                 >
                   Description (Optionnel)
                 </label>
                 <textarea
+                  ngModel
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
-                  id="story"
-                  name="story"
+                  placeholder="Mettez une description de la societé"
+                  name="description"
                   rows="5"
                   cols="33"
                 >
@@ -123,8 +125,8 @@
           </button>
           <button
             class="bg-green hover:bg-greenLight text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            type="button"
-            (click)="toggleModal()"
+            type="submit"
+            (click)="addSociete(addSocieteForm)"
           >
             Ajouter
           </button>
@@ -132,7 +134,45 @@
       </div>
     </div>
   </div>
-  <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+  <!-- Tableau des societes -->
+  <div class="container w-auto mx-auto mt-10">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- libelle Column -->
+        <ng-container matColumnDef="libelleSociete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Libellé de la societé
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.libelleSociete }}</td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Description de la banque
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <!-- <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr> -->
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page of users"
+      ></mat-paginator>
+    </div>
+  </div>
+
   <!-- <pre>
     {{ convertedJson }}
   </pre> -->
