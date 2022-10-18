@@ -23,6 +23,8 @@ export class ApiService {
   baseUrlListMouvement = 'http://localhost:8080/mouvement/list';
   baseUrlAddMouvement = 'http://localhost:8080/mouvement/add';
 
+  baseUrlSearchBanque = 'http://localhost:8080/banque/findById';
+
   constructor(private http: HttpClient) {}
   // La liste des banques
   getBanqueList() {
@@ -46,6 +48,13 @@ export class ApiService {
   }
   // Ajout d'un compte bancaire
   addCompteBancaire(compteBancaire?: CompteBancaire): Observable<Object> {
-    return this.http.post<Object>(`${this.baseUrlAddBanque}`, compteBancaire);
+    return this.http.post<Object>(
+      `${this.baseUrlAddComptebancaire}`,
+      compteBancaire
+    );
+  }
+  // Recherche de nom de banque
+  searchBanque(banque?: Banque): Observable<any> {
+    return this.http.post<any>(`${this.baseUrlSearchBanque}`, banque);
   }
 }
