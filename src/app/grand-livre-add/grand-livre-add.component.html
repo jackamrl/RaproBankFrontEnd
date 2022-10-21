@@ -1,76 +1,116 @@
 <app-navbar></app-navbar>
+
 <div class="container mx-auto">
   <h1
     class="text-2xl font-bold text-center text-black md:text-3xl md:text-center mt-10"
   >
     Ajout d'un extrait de grand livre
   </h1>
+
   <div class="flex items-center justify-center p-12">
     <!-- Author: FormBold Team -->
     <!-- Learn More: https://formbold.com -->
     <div class="mx-auto w-full max-w-[550px] bg-white">
-      <form action="https://formbold.com/s/FORM_ID" method="POST">
-        <div class="mb-5">
+      <!-- Form -->
+      <form #addGrandLivreForm="ngForm">
+        <!-- Le compte bancaire -->
+        <div class="mb-5" ngModelGroup="compteBancaire">
           <label
-            for="guest"
+            for="idComptebancaire"
             class="mb-3 block text-base font-medium text-black"
           >
             Selectionnez le compte bancaire
           </label>
           <select
+            ngModel
+            name="idComptebancaire"
             class="form-select w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
             aria-label="Default select example"
           >
-            <option selected>
+            <option value="" disabled [selected]>
               Ouvrez ce menu pour selectionner le compte bancaire
             </option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option
+              id="idComptebancaire"
+              [value]="compteBancaire.idComptebancaire"
+              *ngFor="let compteBancaire of compteBancaires"
+            >
+              {{ compteBancaire.libelleCompte }}
+            </option>
           </select>
         </div>
-
+        <!-- Le mois -->
         <div class="-mx-3 flex flex-wrap">
           <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
               <label
-                for="date"
+                for="mois"
                 class="mb-3 block text-base font-medium text-black"
               >
                 Mois
               </label>
               <select
+                ngModel
+                name="mois"
                 class="form-select w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
                 aria-label="Default select example"
               >
-                <option selected>Selectionnez le mois</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="" disabled [selected]>
+                  Selectionner le mois
+                </option>
+                <option [value]="month" *ngFor="let month of months">
+                  {{ month }}
+                </option>
               </select>
             </div>
           </div>
+          <!-- L'année -->
           <div class="w-full px-3 sm:w-1/2">
             <div class="mb-5">
               <label
-                for="time"
+                for="annee"
                 class="mb-3 block text-base font-medium text-black"
               >
                 Année
               </label>
               <select
+                ngModel
+                name="annee"
                 class="form-select w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
                 aria-label="Default select example"
               >
-                <option selected>Selectionnez l'année</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="" disabled [selected]>
+                  Selectionnez l'année
+                </option>
+                <option *ngFor="let year of years" [value]="year">
+                  {{ year }}
+                </option>
               </select>
             </div>
           </div>
+          <!--
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-5">
+              <label
+                for="type"
+                class="mb-3 block text-base font-medium text-black"
+              >
+                Année
+              </label>
+              <select
+                ngModel
+                name="type"
+                class="form-select w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                aria-label="Default select example"
+              >
+                <option selected *ngFor="let type of types" [value]="type">
+                  {{ type }}
+                </option>
+              </select>
+            </div>
+          </div> -->
         </div>
-        <div class="mb-6 pt-4">
+        <!-- <div class="mb-6 pt-4">
           <label class="mb-5 block text-xl font-semibold text-black">
             Importer le fichier d'extrait du grand livre
           </label>
@@ -104,16 +144,121 @@
               </div>
             </label>
           </div>
-        </div>
+        </div> -->
+      </form>
+      <form #importForm="ngForm">
+        <div class="mb-6 pt-4">
+          <label class="mb-5 block text-xl font-semibold text-black">
+            Importer le fichier d'extrait du grand livre
+          </label>
 
-        <div>
-          <button
-            class="hover:shadow-form w-full rounded-md bg-green py-3 px-8 text-center text-base font-semibold text-white outline-none"
-          >
-            Ajouter
-          </button>
+          <div class="mb-8">
+            <input
+              ngModel
+              type="file"
+              name="file"
+              id="file"
+              class="sr-only"
+              accept=".xls,.xlsx"
+              name="fileUpload"
+              (change)="fileUpload($event)"
+            />
+            <label
+              for="file"
+              class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
+            >
+              <div class="cursor-grab">
+                <span class="mb-2 block text-xl font-semibold text-black">
+                  Déposez le fichier ici
+                </span>
+                <span class="mb-2 block text-base font-medium text-[#6B7280]">
+                  Ou
+                </span>
+                <span
+                  class="cursor-pointer inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-black"
+                >
+                  Parcourir
+                </span>
+              </div>
+            </label>
+          </div>
         </div>
       </form>
+      <div>
+        <button
+          (click)="
+            addGrandLivre(addGrandLivreForm); importGrandLivre(importForm)
+          "
+          class="mt-10 hover:shadow-form w-full rounded-md bg-green py-3 px-8 text-center text-base font-semibold text-white outline-none"
+        >
+          Importer
+        </button>
+      </div>
     </div>
   </div>
+  <div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full">
+            <thead class="border-b">
+              <tr>
+                <th
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  Date
+                </th>
+                <th
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  Libellé
+                </th>
+                <th
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  Montant
+                </th>
+                <th
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  Reference
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of myData">
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  {{ item.date }}
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  {{ item.libelleOperationGl }}
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  {{ item.montant }}
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  {{ item.reference }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <pre>
+    {{ convertedJson }}
+  </pre> -->
 </div>

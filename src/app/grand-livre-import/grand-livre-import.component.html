@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="container mx-auto">
+  <h1
+    class="text-2xl font-bold text-center text-black md:text-3xl md:text-center mt-10"
+  >
+    Ajout d'un extrait de grand livre
+  </h1>
+
+  <div class="mb-6 pt-4">
+    <label class="mb-5 block text-xl font-semibold text-black">
+      Importer le fichier d'extrait du grand livre
+    </label>
+
+    <div class="mb-8">
+      <input
+        type="file"
+        name="file"
+        id="file"
+        class="sr-only"
+        accept=".xls,.xlsx"
+        name="fileUpload"
+        (change)="fileUpload($event)"
+      />
+      <label
+        for="file"
+        class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
+      >
+        <div class="cursor-grab">
+          <span class="mb-2 block text-xl font-semibold text-black">
+            Déposez le fichier ici
+          </span>
+          <span class="mb-2 block text-base font-medium text-[#6B7280]">
+            Ou
+          </span>
+          <span
+            class="cursor-pointer inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-black"
+          >
+            Parcourir
+          </span>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>

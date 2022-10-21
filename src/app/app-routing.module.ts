@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountPageComponent } from './account-page/account-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 import { BanquePageComponent } from './banque-page/banque-page.component';
 import { ExtraitBancaireAddComponent } from './extrait-bancaire-add/extrait-bancaire-add.component';
 import { GrandLivreAddComponent } from './grand-livre-add/grand-livre-add.component';
+import { GrandLivreImportComponent } from './grand-livre-import/grand-livre-import.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginComponent } from './login/login.component';
@@ -24,11 +26,22 @@ const routes: Routes = [
   {
     path: 'ajoutGl',
     component: GrandLivreAddComponent,
+    // children: [
+    //   {
+    //     path: 'import',
+    //     component: GrandLivreImportComponent,
+    //   },
+    // ],
     canActivate: [AuthGuard],
   },
   {
     path: 'ajoutEb',
     component: ExtraitBancaireAddComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'import',
+    component: GrandLivreImportComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -39,6 +52,11 @@ const routes: Routes = [
   {
     path: 'societe',
     component: SocietePageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin',
+    component: AdminPageComponent,
     canActivate: [AuthGuard],
   },
   { path: 'banque', component: BanquePageComponent, canActivate: [AuthGuard] },

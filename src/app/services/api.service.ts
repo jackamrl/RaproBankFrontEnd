@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Banque } from '../models/banque';
 import { CompteBancaire } from '../models/compteBancaire';
+import { Mouvement } from '../models/mouvement';
 import { Societe } from '../models/societe';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +24,12 @@ export class ApiService {
   //url pour les mouvements
   baseUrlListMouvement = 'http://localhost:8080/mouvement/list';
   baseUrlAddMouvement = 'http://localhost:8080/mouvement/add';
+  //url pour les utilisateurs
+  baseUrlSignup = 'http://localhost:8080/api/auth/signup';
+  // baseUrlAddMouvement = 'http://localhost:8080/mouvement/add';
 
   baseUrlSearchBanque = 'http://localhost:8080/banque/findById';
+  baseUrlUserList = 'http://localhost:8080/user/list';
 
   constructor(private http: HttpClient) {}
   // La liste des banques
@@ -42,6 +48,15 @@ export class ApiService {
   addSociete(societe?: Societe): Observable<Object> {
     return this.http.post<Object>(`${this.baseUrlAddSociete}`, societe);
   }
+
+  // La liste des mouvements
+  getMouvementList() {
+    return this.http.get<any>(this.baseUrlListMouvement);
+  }
+  // Ajout d'un mouvement
+  addMouvement(mouvement?: Mouvement): Observable<Object> {
+    return this.http.post<Object>(`${this.baseUrlAddMouvement}`, mouvement);
+  }
   // La liste des comptes bancaires
   getCompteBancaireList() {
     return this.http.get<any>(this.baseUrlListComptebancaire);
@@ -52,6 +67,15 @@ export class ApiService {
       `${this.baseUrlAddComptebancaire}`,
       compteBancaire
     );
+  }
+
+  // Ajout d'un nouvel utilsateur
+  addUser(user?: User): Observable<Object> {
+    return this.http.post<Object>(`${this.baseUrlAddComptebancaire}`, user);
+  }
+  // Liste des utilisateurs
+  getUserList() {
+    return this.http.get<any>(this.baseUrlUserList);
   }
   // Recherche de nom de banque
   searchBanque(banque?: Banque): Observable<any> {

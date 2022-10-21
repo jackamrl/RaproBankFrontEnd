@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,10 +24,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatIconModule } from '@angular/material/icon';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddBanqueFormComponent } from './add-banque-form/add-banque-form.component';
+import { GrandLivreImportComponent } from './grand-livre-import/grand-livre-import.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,8 @@ import { AddBanqueFormComponent } from './add-banque-form/add-banque-form.compon
     SocietePageComponent,
     LoginPageComponent,
     AddBanqueFormComponent,
+    GrandLivreImportComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +64,9 @@ import { AddBanqueFormComponent } from './add-banque-form/add-banque-form.compon
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
+    MatStepperModule,
+    MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

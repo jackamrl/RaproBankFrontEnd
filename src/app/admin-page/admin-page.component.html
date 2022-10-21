@@ -1,0 +1,326 @@
+<app-navbar></app-navbar>
+<div class="container mx-auto">
+  <div class="container flex flex-row space-x-48 place-items-center mt-7">
+    <div class="">
+      <h1
+        class="text-3xl font-semibold text-center text-black md:text-3xl md:text-left"
+      >
+        Liste des utilisateurs
+      </h1>
+    </div>
+    <div class="ml-0">
+      <button
+        class="flex shadow w-32 block border-green border-2 rounded-full focus:outline-none focus:border-green px-4 py-2 text-green hover:bg-green hover:text-white"
+        (click)="toggleModal()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+
+        <span>Ajouter</span>
+      </button>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    *ngIf="showModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+  >
+    <div class="relative w-auto my-6 mx-auto max-w-3xl">
+      <!--content-->
+      <div
+        class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+      >
+        <!--header-->
+        <div
+          class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
+        >
+          <h3 class="text-3xl font-semibold">Ajout d'un utilisateur</h3>
+          <button
+            class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+            (click)="toggleModal()"
+          >
+            <span
+              class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"
+            >
+              ×
+            </span>
+          </button>
+        </div>
+        <!--body-->
+        <div class="flex items-center justify-center p-9">
+          <div class="mx-auto w-full max-w-[550px] bg-white">
+            <!-- form -->
+            <form [formGroup]="addUserForm">
+              <!-- username -->
+
+              <div class="mb-5">
+                <label
+                  for="username"
+                  class="mb-3 block text-base font-medium text-black"
+                >
+                  Nom d'utilisateur
+                </label>
+
+                <input
+                  formControlName="username"
+                  placeholder="Ex : Toto"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                />
+                <!-- <mat-error>Ce champ est obligatoire</mat-error> -->
+              </div>
+              <!-- email -->
+
+              <div class="mb-5">
+                <label
+                  for="email"
+                  class="mb-3 block text-base font-medium text-black"
+                >
+                  Adresse email
+                </label>
+
+                <input
+                  formControlName="email"
+                  type="email"
+                  placeholder="Ex : azerty@test.com"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                />
+              </div>
+              <!-- mot de passe -->
+
+              <div class="mb-5">
+                <label
+                  for="password"
+                  class="mb-3 block text-base font-medium text-black"
+                >
+                  Mot de passe
+                </label>
+
+                <input
+                  formControlName="password"
+                  type="password"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                />
+              </div>
+              <!-- confirmation de mot de passe -->
+
+              <!-- <div class="mb-5">
+                <label
+                  for="password"
+                  class="mb-3 block text-base font-medium text-black"
+                >
+                  Confirmer le mot de passe
+                </label>
+
+                <input
+                  formControlName="password"
+                  type="password"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green focus:shadow-md"
+                />
+              </div> -->
+              <!-- <div class="mb-5">
+                <label>Product Category <strong>(Form Array)</strong></label>
+                <div
+                  class="checkbox-group"
+                  [class.is-invalid]="f['categoriesFormArr'].invalid"
+                >
+                  <div
+                    *ngFor="
+                      let control of categoriesFormArr?.controls;
+                      let i = index
+                    "
+                    class="checkbox"
+                  >
+                    <label
+                      ><input
+                        type="checkbox"
+                        [FieldGroupTypeConfig
+                        ]="control"
+                      />
+                      {{ lesRoles[i]?.title }}
+                    </label>
+                  </div>
+                </div>
+                <div class="invalid-feedback" role="alert">
+                  FormArray - At least one category must be selected.
+                </div>
+                <div class="alert alert-primary mt-2">
+                  {{ categoriesFormArraySelectedIds | json }}
+                </div>
+              </div> -->
+
+              <!-- roles -->
+              <div class="mb-5">
+                <label
+                  for="role"
+                  class="mb-3 block text-base font-medium text-black"
+                >
+                  Les rôles
+                </label>
+                <div ngModel name="role">
+                  <div class="flex items-center mb-2">
+                    <input
+                      checked=""
+                      id="checked-checkbox"
+                      type="checkbox"
+                      value="rgrr"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      for="default-checkbox"
+                      class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Utilisateur simple</label
+                    >
+                  </div>
+                  <div class="flex items-center mb-2">
+                    <input
+                      id="default-checkbox"
+                      type="checkbox"
+                      value="role"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+
+                    <label
+                      for="default-checkbox"
+                      class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Comptable</label
+                    >
+                  </div>
+                  <div class="flex items-center mb-2">
+                    <input
+                      id="default-checkbox"
+                      type="checkbox"
+                      value="role"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+
+                    <label
+                      for="default-checkbox"
+                      class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >Administrateur</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--footer-->
+        <div
+          class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b"
+        >
+          <button
+            class="text-green background-transparent hover:bg-whiteGreen border-2 border:green font-bold uppercase px-6 py-2 rounded text-sm outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            (click)="toggleModal()"
+          >
+            Fermer
+          </button>
+          <button
+            class="bg-green hover:bg-greenLight text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="submit"
+            (click)="addUser()"
+          >
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableau des users -->
+  <div class="container w-auto mx-auto mt-10">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- libelle Column -->
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Nom d'utilisateur
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.username }}</td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Adresse email
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="roles">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Les rôles</th>
+          <td mat-cell *matCellDef="let row">
+            <span class="mr-4" *ngFor="let role of row.roles">{{
+              role.name
+            }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5 text-green"
+              >
+                <path
+                  d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z"
+                />
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5 mx-4 text-red-600"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <!-- <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              No data matching the filter "{{ input.value }}"
+            </td>
+          </tr> -->
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page of users"
+      ></mat-paginator>
+    </div>
+  </div>
+
+  <!-- <pre>
+    {{ convertedJson }}
+  </pre> -->
+</div>
